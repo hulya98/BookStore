@@ -33,5 +33,36 @@ namespace BookStore.Controllers
             genreRepository.AddT(genre);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult GenreGet(int id)
+        {
+            var x = genreRepository.GetT(id);
+            Genre genre = new Genre()
+            {
+                GenreName = x.GenreName,
+                GenreId = x.GenreId,
+                Status = x.Status
+            };
+            return View(genre);
+        }
+
+
+        [HttpPost]
+        public IActionResult GenreUpdate(Genre genre)
+        {
+            var x = genreRepository.GetT(genre.GenreId);
+            x.GenreName = genre.GenreName;
+            genreRepository.UpdateT(x);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult GenreDelete(int id)
+        {
+            var x = genreRepository.GetT(id);
+            x.Status = false;
+            genreRepository.UpdateT(x);
+            return RedirectToAction("Index");
+        }
     }
 }
