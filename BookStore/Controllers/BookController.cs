@@ -54,7 +54,6 @@ namespace BookStore.Controllers
             return View(viewModels);
         }
 
-        public IFormFile Upload;
         [HttpPost]
         public async Task<IActionResult> BookAdd(ViewModels viewModels, IFormFile Upload)
         {
@@ -63,7 +62,7 @@ namespace BookStore.Controllers
             {
                 var saveimg = Path.Combine(_environment.WebRootPath, "images", viewModels.Books.ImageUrl);
                 var stream = new FileStream(saveimg, FileMode.Create);
-                //await Upload.CopyToAsync(stream);
+                //await viewModels.Books.ImageUrl.CopyToAsync(stream);
                 viewModels.Books.ImageUrl = saveimg;
             }
             if (!ModelState.IsValid)
