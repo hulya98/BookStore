@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace BookStore.Models
         public int WriterId { get; set; }
         public int GenreId { get; set; }
         public string BookName { get; set; }
+        public IFormFile ImageUrl { get; set; }
         public int Stock { get; set; }
         public decimal Price { get; set; }
         public int SalePercent { get; set; }
