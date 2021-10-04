@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using BookStore.Dtos;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BookStore.Models
     {
         public List<SelectListItem> GenreList { get; set; }
         public List<SelectListItem> WriterList { get; set; }
-        public Book Books { get; set; }
+        public BookDto Book { get; set; }
 
     }
 }
