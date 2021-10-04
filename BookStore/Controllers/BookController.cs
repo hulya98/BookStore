@@ -55,14 +55,15 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> BookAdd(ViewModels viewModels, IFormFile Upload)
+        public async Task<IActionResult> BookAdd(ViewModels viewModels, IFormFile Image)
         {
+            //AutoMapper
             string imgext = Path.GetExtension(viewModels.Books.ImageUrl);
             if (imgext.Contains(".jpg") || imgext.Contains("png"))
             {
                 var saveimg = Path.Combine(_environment.WebRootPath, "images", viewModels.Books.ImageUrl);
                 var stream = new FileStream(saveimg, FileMode.Create);
-                //await viewModels.Books.ImageUrl.CopyToAsync(stream);
+                await viewModels.Books.ImageUrl.CopyToAsync(stream);
                 viewModels.Books.ImageUrl = saveimg;
             }
             if (!ModelState.IsValid)

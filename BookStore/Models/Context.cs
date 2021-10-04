@@ -10,7 +10,7 @@ namespace BookStore.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server = DESKTOP-2VOS6HP; database = BookStore; integrated security = true;");
+            optionsBuilder.UseSqlServer("server = WIN-7O7800EAN50; database = BookStore; integrated security = true;");
         }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Writer> Writers { get; set; }

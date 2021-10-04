@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BookStore.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.Models
+namespace BookStore.Dtos
 {
-    public class Book
+    public class BookDto
     {
-        [Key]
         public int Id { get; set; }
         public int WriterId { get; set; }
         public int GenreId { get; set; }
