@@ -308,3 +308,5 @@ C:\Users\User\Desktop\Book\BookStore\BookStore\obj\Debug\net5.0\BookStore.dll
 C:\Users\User\Desktop\Book\BookStore\BookStore\obj\Debug\net5.0\ref\BookStore.dll
 C:\Users\User\Desktop\Book\BookStore\BookStore\obj\Debug\net5.0\BookStore.pdb
 C:\Users\User\Desktop\Book\BookStore\BookStore\obj\Debug\net5.0\BookStore.genruntimeconfig.cache
+C:\Users\DELL\source\repos\BookStore\BookStore\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\DELL\source\repos\BookStore\BookStore\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

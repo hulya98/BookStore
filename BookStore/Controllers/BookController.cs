@@ -11,51 +11,47 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using AutoMapper;
+using BookStore.Dtos;
+using BookStore.ViewModels;
+
 namespace BookStore.Controllers
 {
     public class BookController : Controller
     {
-        private readonly IWebHostEnvironment _iwebhost;
-        private IHostingEnvironment _environment;
-        public BookController(IWebHostEnvironment iwebhost, IHostingEnvironment environment)
+        //private readonly IWebHostEnvironment _iwebhost;
+        //private IHostingEnvironment _environment;
+
+        private readonly IMapper _mapper;
+        public BookController(IMapper mapper)
         {
-            _iwebhost = iwebhost;
-            _environment = environment;
+            _mapper = mapper;
+            //_iwebhost = iwebhost;
+            //_environment = environment;
         }
-        Context context = new Context();
         BookRepository bookRepository = new BookRepository();
+        GenreRepository genreRepository = new GenreRepository();
+        WriterRepository writerRepository = new WriterRepository();
+        Context context = new Context();
         public IActionResult Index()
         {
             return View(bookRepository.TList());
         }
 
         [HttpGet]
-        public IActionResult BookAdd(Book book)
+        public IActionResult BookAdd()
         {
-            List<SelectListItem> GenresList = (from x in context.Genres.ToList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = x.GenreName,
-                                                   Value = x.GenreId.ToString()
-                                               }).ToList();
-
-            List<SelectListItem> WritersList = (from x in context.Writers.ToList()
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.WriterName,
-                                                    Value = x.WriterId.ToString()
-                                                }).ToList();
-
-            ViewModels viewModels = new ViewModels();
-            //viewModels.Books = book;
-            //viewModels.GenreList = GenresList;
-            //viewModels.WriterList = WritersList;
-
-            return View(viewModels);
+            var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList());
+            var writers = _mapper.Map<List<Writer>, List<WriterDto>>(writerRepository.TList());
+            BookVM bookVM = new BookVM();
+            bookVM.Genres = genres;
+            bookVM.Writers = writers;
+            //bookVM.Book = book.Book;
+            return View(bookVM);
         }
 
         [HttpPost]
-        public async Task<IActionResult> BookAdd(ViewModels viewModels, IFormFile Image)
+        public IActionResult BookAdd(BookVM bookVM,IFormFile formFile)
         {
             //AutoMapper
             //string imgext = Path.GetExtension(viewModels.Books.ImageUrl);

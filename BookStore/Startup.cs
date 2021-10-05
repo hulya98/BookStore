@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
+using BookStore.Dtos;
 
 namespace BookStore
 {
@@ -27,6 +28,7 @@ namespace BookStore
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddControllersWithViews(options => options.EnableEndpointRouting = false).AddFluentValidation((x => x.RegisterValidatorsFromAssemblyContaining<Startup>()));
         }
@@ -41,6 +43,7 @@ namespace BookStore
 
             app.UseStaticFiles();
             app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
