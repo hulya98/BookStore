@@ -19,13 +19,14 @@ namespace BookStore.Controllers
 {
     public class BookController : Controller
     {
-        //private readonly IWebHostEnvironment _iwebhost;
+        private readonly IWebHostEnvironment _iwebhost;
         //private IHostingEnvironment _environment;
 
         private readonly IMapper _mapper;
-        public BookController(IMapper mapper)
+        public BookController(IMapper mapper, IWebHostEnvironment iwebhost)
         {
             _mapper = mapper;
+            _iwebhost = iwebhost;
             //_iwebhost = iwebhost;
             //_environment = environment;
         }
@@ -51,25 +52,29 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult BookAdd(BookVM bookVM,IFormFile formFile)
+        public async Task<IActionResult> BookAdd(BookVM bookVM)
         {
             //AutoMapper
-            //string imgext = Path.GetExtension(viewModels.Books.ImageUrl);
-            //if (imgext.Contains(".jpg") || imgext.Contains("png"))
-            //{
-            //    var saveimg = Path.Combine(_environment.WebRootPath, "images", viewModels.Books.ImageUrl);
-            //    var stream = new FileStream(saveimg, FileMode.Create);
-            //    await viewModels.Book.Image.CopyToAsync(stream);
-            //    viewModels.Books.ImageUrl = saveimg;
-            //}
-            //if (!ModelState.IsValid)
-            //{
-            //    var messages = ModelState.ToList();
-            //    return View("BookAdd");
-            //}
-            //bookRepository.AddT(viewModels.Books);
+            if (ModelState.IsValid)
+            {
+                if (bookVM.Book.Image != null)
+                {
+                    string folder = "wwwroot/images/";
+                    string ImageUrl = Guid.NewGuid().ToString() + bookVM.Book.Image.FileName;
+                    folder += ImageUrl;
+                    string serverFolder = Path.Combine(_iwebhost.WebRootPath, folder);
+
+                    await bookVM.Book.Image.CopyToAsync(new FileStream(folder, FileMode.Create));
+
+                    var book = _mapper.Map<BookDto, Book>(bookVM.Book);
+                    book.ImageUrl = ImageUrl;
+                    bookRepository.AddT(book);
+                }
+            }
+
             return RedirectToAction("Index");
         }
+
 
     }
 }

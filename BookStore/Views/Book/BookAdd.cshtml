@@ -6,22 +6,29 @@
 </head>
 <body>
     <link rel="stylesheet" type="text/css" href="~/css/Book/BookAdd.css?v=002">
+
     <form asp-action="BookAdd" class="form" enctype="multipart/form-data">
+        <br />
+        <a href="/Writer/WriterAdd/1" class="btn btn-dark newBookButton">New Writer</a>
+        <a href="/Genre/GenreAdd/1" class="btn btn-dark newBookButton">New Genre</a>
+        <br />
         <div asp-validation-summary="ModelOnly" class="text-dark"></div>
         <div class="form-group">
             <label asp-for="@Model.Book.BookName" class="control-label"></label>
             <input asp-for="@Model.Book.BookName" class="form-control" />
             <span asp-validation-for="@Model.Book.BookName" class="text-dark"></span>
 
-            <label class="col-md-2 control-label">Image</label>
-            <div class="col-md-10">
-                <input type="file" accept="image/*" name="Image" class="form-control" />
+            <label asp-for="@Model.Book.Image" class="control-label"></label>
+            <div class="custom-file">
+                <input asp-for="@Model.Book.Image" class="custom-file-input" id="customFile" />
+                <label class="custom-file-label" for="customFile">ChooseFile</label>
             </div>
 
             <label class="control-label">WriterName</label>
             <select asp-for="@Model.Book.WriterId" class="form-control" asp-items="@(new SelectList(Model.Writers,"WriterId","WriterName"))">
                 <option value="">Please select one</option>
             </select>
+
 
             <label class="control-label">GenreName</label>
             <select asp-for="@Model.Book.GenreId" class="form-control" asp-items="@(new SelectList(Model.Genres,"GenreId","GenreName"))">
@@ -36,7 +43,7 @@
             <input asp-for="@Model.Book.SalePercent" class="form-control" />
 
             <label asp-for="@Model.Book.DiscountedPrice" class="control-label"></label>
-            <input asp-for="@Model.Book.DiscountedPrice" class="form-control" />
+            <input asp-for="@Model.Book.DiscountedPrice" class="form-control" readonly />
             <span asp-validation-for="@Model.Book.DiscountedPrice" class="text-dark"></span>
 
 

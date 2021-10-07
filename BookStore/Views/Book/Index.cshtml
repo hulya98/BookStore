@@ -1,5 +1,5 @@
-﻿@model List<BookStore.Models.Book>
-
+﻿@using static BookStore.Models.Writer;
+@model List<BookStore.Models.Book>
 <!DOCTYPE html>
 
 <html>
@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class="main">
-        <a href="/Book/BookAdd/" class="btn btn-dark newBookButton">New Genre</a>
+        <a href="/Book/BookAdd/" class="btn btn-dark newBookButton">New Book</a>
+    
         <table class="table table-bordered table-dark">
             <thead>
                 <tr>

@@ -12,6 +12,7 @@ namespace BookStore.Dtos
         public MappingProfile()
         {
             CreateMap<Book, BookDto>();
+            CreateMap<BookDto, Book>();
             CreateMap<Genre, GenreDto>();
             CreateMap<Writer, WriterDto>();
         }
