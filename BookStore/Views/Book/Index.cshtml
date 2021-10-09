@@ -1,5 +1,4 @@
-﻿@using static BookStore.Models.Writer;
-@model List<BookStore.Models.Book>
+﻿@model List<BookStore.Models.Book>
 <!DOCTYPE html>
 
 <html>
@@ -11,7 +10,7 @@
 <body>
     <div class="main">
         <a href="/Book/BookAdd/" class="btn btn-dark newBookButton">New Book</a>
-    
+
         <table class="table table-bordered table-dark">
             <thead>
                 <tr>
@@ -36,14 +35,14 @@
                         <th scope="row">@index</th>
                         <td>@item.BookName</td>
                         <td><img src="/images/@item.ImageUrl" width="80" height="100" /></td>
-                        <td>@item.WriterId</td>
-                        <td>@item.GenreId</td>
+                        <td>@item.Writers.WriterName</td>
+                        <td>@item.Genres.GenreName</td>
                         <td>@item.Price</td>
                         <td>@item.SalePercent</td>
                         <td>@item.DiscountedPrice</td>
                         <td>@item.Stock</td>
-                        <td><a href="/Book/BookGet/@item.Id" class="btn btn-outline-primary">Update</a></td>
-                        <td><a href="/Book/BookDelete/@item.Id" class="btn btn-outline-danger">Delete</a></td>
+                        <td><a href="/Book/BookGet/@item.BookId" class="btn btn-outline-primary">Update</a></td>
+                        <td><a href="/Book/BookDelete/@item.BookId" class="btn btn-outline-danger">Delete</a></td>
                     </tr>
 
                     index++;

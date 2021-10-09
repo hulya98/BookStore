@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Hosting;
 using AutoMapper;
 using BookStore.Dtos;
 using BookStore.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Controllers
 {
@@ -36,8 +37,11 @@ namespace BookStore.Controllers
         Context context = new Context();
         public IActionResult Index()
         {
-            return View(bookRepository.TList());
+
+            var book = context.Books.Include(x => x.Writers).Include(x => x.Genres).ToList();
+            return View(book.ToList());
         }
+
 
         [HttpGet]
         public IActionResult BookAdd()
