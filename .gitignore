@@ -3,3 +3,8 @@
 *.dll
 *.debug
 *.suo
+myproject\bin**
+myproject\obj**
+BookStore\bin**
+BookStore\obj**
+BookStore\config\**
