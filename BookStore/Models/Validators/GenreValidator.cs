@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using BookStore.Repositories;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace BookStore.Models.Validators
         public GenreValidator()
         {
             RuleFor(x => x.GenreName).NotEmpty().NotEmpty().WithMessage("Please, Enter Genre");
+
         }
+
     }
 }

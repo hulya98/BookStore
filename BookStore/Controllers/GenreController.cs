@@ -30,6 +30,7 @@ namespace BookStore.Controllers
                 var messages = ModelState.ToList();
                 return View("GenreAdd");
             }
+            genre.Status = true;
             genreRepository.AddT(genre);
             return RedirectToAction("Index");
         }

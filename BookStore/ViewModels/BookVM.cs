@@ -10,8 +10,8 @@ namespace BookStore.ViewModels
 {
     public class BookVM
     {
-        public List<GenreDto> Genres { get; set; }
-        public List<WriterDto> Writers { get; set; }
+        public IEnumerable<GenreDto> Genres { get; set; }
+        public IEnumerable<WriterDto> Writers { get; set; }
         public BookDto Book { get; set; }
     }
 }

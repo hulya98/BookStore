@@ -38,7 +38,7 @@ namespace BookStore.Controllers
         public IActionResult Index()
         {
 
-            var book = context.Books.Include(x => x.Writers).Include(x => x.Genres).ToList();
+            var book = context.Books.Include(x => x.Writer).Include(x => x.Genre).ToList();
             return View(book.ToList());
         }
 
@@ -46,12 +46,11 @@ namespace BookStore.Controllers
         [HttpGet]
         public IActionResult BookAdd()
         {
-            var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList());
-            var writers = _mapper.Map<List<Writer>, List<WriterDto>>(writerRepository.TList());
+            var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList()).Where(x => x.Status == true);
+            var writers = _mapper.Map<List<Writer>, List<WriterDto>>(writerRepository.TList()).Where(x => x.Status == true);
             BookVM bookVM = new BookVM();
             bookVM.Genres = genres;
             bookVM.Writers = writers;
-            //bookVM.Book = book.Book;
             return View(bookVM);
         }
 

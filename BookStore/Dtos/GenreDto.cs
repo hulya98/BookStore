@@ -9,5 +9,6 @@ namespace BookStore.Dtos
     {
         public int GenreId { get; set; }
         public string GenreName { get; set; }
+        public bool Status { get; set; }
     }
 }

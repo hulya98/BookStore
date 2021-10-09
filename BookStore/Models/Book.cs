@@ -21,7 +21,7 @@ namespace BookStore.Models
         public int SalePercent { get; set; }
         public decimal DiscountedPrice { get; set; }
 
-        public Writer Writers { get; set; }
-        public Genre Genres { get; set; }
+        public Writer Writer { get; set; }
+        public Genre Genre { get; set; }
     }
 }
