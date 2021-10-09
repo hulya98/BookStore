@@ -1,0 +1,56 @@
+﻿@using static BookStore.Models.Writer;
+@model List<BookStore.Models.Book>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/css/Book/BookIndex.css?v=002" />
+</head>
+<body>
+    <div class="main">
+        <a href="/Book/BookAdd/" class="btn btn-dark newBookButton">New Book</a>
+    
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Writer</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Sale Percent</th>
+                    <th scope="col">Discounted Price</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int index = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@index</th>
+                        <td>@item.BookName</td>
+                        <td><img src="/images/@item.ImageUrl" width="80" height="100" /></td>
+                        <td>@item.WriterId</td>
+                        <td>@item.GenreId</td>
+                        <td>@item.Price</td>
+                        <td>@item.SalePercent</td>
+                        <td>@item.DiscountedPrice</td>
+                        <td>@item.Stock</td>
+                        <td><a href="/Book/BookGet/@item.Id" class="btn btn-outline-primary">Update</a></td>
+                        <td><a href="/Book/BookDelete/@item.Id" class="btn btn-outline-danger">Delete</a></td>
+                    </tr>
+
+                    index++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

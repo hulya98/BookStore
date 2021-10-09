@@ -1,0 +1,50 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_AdminLayout</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="basicExampleNav2">
+
+            <!-- Right -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/Genre/Index/" class="nav-link waves-effect">
+                        Genre
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Writer/Index/" class="nav-link waves-effect">
+                        Writer
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Book/Index/" class="nav-link waves-effect">
+                        Books
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Shop/Index" class="nav-link waves-effect">
+                        Shop
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <!-- Links -->
+
+    </nav>
+    <!-- Navbar -->
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

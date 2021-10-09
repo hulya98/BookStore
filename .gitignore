@@ -1,0 +1,8 @@
+*.txt
+*.class
+*.dll
+*.debug
+*.suo
+bin
+obj
+config

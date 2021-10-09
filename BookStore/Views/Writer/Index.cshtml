@@ -1,0 +1,44 @@
+﻿@model List<BookStore.Models.Writer>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/css/Writer/WriterIndex.css" />
+</head>
+<body>
+    <div class="main">
+        <a href="/Writer/WriterAdd/" class="btn btn-dark newWriterButton">New Writer</a>
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Writer</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int index = 1; }
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <th scope="row">@index</th>
+                        <td>@item.WriterName</td>
+                        <td>@item.Status</td>
+                        <td><a href="/Writer/WriterGet/@item.WriterId" class="btn btn-outline-primary">Update</a></td>
+                        <td><a href="/Writer/WriterDelete/@item.WriterId" class="btn btn-outline-danger">Delete</a></td>
+                    </tr>
+
+                    index++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

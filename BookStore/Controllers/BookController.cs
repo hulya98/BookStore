@@ -1,0 +1,80 @@
+﻿using BookStore.Models;
+using BookStore.Repositories;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using AutoMapper;
+using BookStore.Dtos;
+using BookStore.ViewModels;
+
+namespace BookStore.Controllers
+{
+    public class BookController : Controller
+    {
+        private readonly IWebHostEnvironment _iwebhost;
+        //private IHostingEnvironment _environment;
+
+        private readonly IMapper _mapper;
+        public BookController(IMapper mapper, IWebHostEnvironment iwebhost)
+        {
+            _mapper = mapper;
+            _iwebhost = iwebhost;
+            //_iwebhost = iwebhost;
+            //_environment = environment;
+        }
+        BookRepository bookRepository = new BookRepository();
+        GenreRepository genreRepository = new GenreRepository();
+        WriterRepository writerRepository = new WriterRepository();
+        Context context = new Context();
+        public IActionResult Index()
+        {
+            return View(bookRepository.TList());
+        }
+
+        [HttpGet]
+        public IActionResult BookAdd()
+        {
+            var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList());
+            var writers = _mapper.Map<List<Writer>, List<WriterDto>>(writerRepository.TList());
+            BookVM bookVM = new BookVM();
+            bookVM.Genres = genres;
+            bookVM.Writers = writers;
+            //bookVM.Book = book.Book;
+            return View(bookVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BookAdd(BookVM bookVM)
+        {
+            //AutoMapper
+            if (ModelState.IsValid)
+            {
+                if (bookVM.Book.Image != null)
+                {
+                    string folder = "wwwroot/images/";
+                    string ImageUrl = Guid.NewGuid().ToString() + bookVM.Book.Image.FileName;
+                    folder += ImageUrl;
+                    string serverFolder = Path.Combine(_iwebhost.WebRootPath, folder);
+
+                    await bookVM.Book.Image.CopyToAsync(new FileStream(folder, FileMode.Create));
+
+                    var book = _mapper.Map<BookDto, Book>(bookVM.Book);
+                    book.ImageUrl = ImageUrl;
+                    bookRepository.AddT(book);
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+    }
+}
