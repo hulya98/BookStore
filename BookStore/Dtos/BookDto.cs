@@ -9,7 +9,7 @@ namespace BookStore.Dtos
 {
     public class BookDto
     {
-        public int Id { get; set; }
+        public int BookId { get; set; }
         public int WriterId { get; set; }
         public int GenreId { get; set; }
         public string BookName { get; set; }

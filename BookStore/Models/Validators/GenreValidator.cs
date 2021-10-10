@@ -11,8 +11,7 @@ namespace BookStore.Models.Validators
     {
         public GenreValidator()
         {
-            RuleFor(x => x.GenreName).NotEmpty().NotEmpty().WithMessage("Please, Enter Genre");
-
+            RuleFor(x => x.GenreName).NotEmpty().WithMessage("Please, Enter Genre");
         }
 
     }

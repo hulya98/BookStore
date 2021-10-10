@@ -5,15 +5,17 @@
     <title></title>
 </head>
 <body>
-    <link rel="stylesheet" type="text/css" href="~/css/Book/BookAdd.css?v=002">
+    <link rel="stylesheet" type="text/css" href="~/css/Book/BookGet.css?v=002">
 
-    <form asp-action="BookAdd" class="form" enctype="multipart/form-data">
+    <form asp-action="BookUpdate" class="form" enctype="multipart/form-data">
         <br />
-        <a href="/Writer/WriterAdd/1" class="btn btn-dark newBookButton">New Writer</a>
-        <a href="/Genre/GenreAdd/1" class="btn btn-dark newBookButton">New Genre</a>
+        <a href="/Writer/WriterAdd/" class="btn btn-dark newBookButton">New Writer</a>
+        <a href="/Genre/GenreAdd/" class="btn btn-dark newBookButton">New Genre</a>
         <br />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
+            <input asp-for="@Model.Book.BookId" class="form-control" hidden />
+
             <label asp-for="@Model.Book.BookName" class="control-label"></label>
             <input asp-for="@Model.Book.BookName" class="form-control" />
             <span asp-validation-for="@Model.Book.BookName" class="text-danger"></span>
@@ -54,7 +56,7 @@
             <span asp-validation-for="@Model.Book.Stock" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-dark button" />
+            <input type="submit" value="Update" class="btn btn-dark button" />
         </div>
     </form>
 </body>

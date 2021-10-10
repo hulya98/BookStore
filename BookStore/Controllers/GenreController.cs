@@ -30,6 +30,8 @@ namespace BookStore.Controllers
                 var messages = ModelState.ToList();
                 return View("GenreAdd");
             }
+            bool dublicate = genreRepository.TList().Any(x => x.GenreName == genre.GenreName);
+            ViewBag.Dublicate = dublicate;
             genre.Status = true;
             genreRepository.AddT(genre);
             return RedirectToAction("Index");
