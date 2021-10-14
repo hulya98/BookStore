@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.Repositories
+namespace BookStore.ViewModels
 {
-    public class GenreRepository : GenericRepository<Genre>
+    public class GenreVM
     {
-      
+        public GenreDto Genre { get; set; }
     }
 }

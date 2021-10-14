@@ -13,13 +13,14 @@ namespace BookStore.Dtos
         public int WriterId { get; set; }
         public int GenreId { get; set; }
         public string BookName { get; set; }
+        public string Description { get; set; }
         public IFormFile Image { get; set; }
         public string ImageUrl { get; set; }
         public int Stock { get; set; }
         public decimal Price { get; set; }
         public int SalePercent { get; set; }
         public decimal DiscountedPrice { get; set; }
-        public virtual Writer Writer { get; set; }
-        public virtual Genre Genre { get; set; }
+        public virtual WriterDto Writer { get; set; }
+        public virtual GenreDto Genre { get; set; }
     }
 }

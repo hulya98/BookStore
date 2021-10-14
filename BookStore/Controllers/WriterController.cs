@@ -1,4 +1,6 @@
-﻿using BookStore.Models;
+﻿using AutoMapper;
+using BookStore.Dtos;
+using BookStore.Models;
 using BookStore.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +13,11 @@ namespace BookStore.Controllers
     public class WriterController : Controller
     {
         WriterRepository writerRepository = new WriterRepository();
+        private readonly IMapper _mapper;
+        public WriterController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
         public IActionResult Index()
         {
             return View(writerRepository.TList());
@@ -19,19 +26,26 @@ namespace BookStore.Controllers
         [HttpGet]
         public IActionResult WriterAdd()
         {
+            string isFromBook = Request.Query["IsFromBook"].ToString();
+            TempData["IsFromBook"] = isFromBook;
             return View();
         }
 
         [HttpPost]
-        public IActionResult WriterAdd(Writer writer)
+        public IActionResult WriterAdd(WriterDto writerDto)
         {
+            var writer = _mapper.Map<WriterDto, Writer>(writerDto);
             if (!ModelState.IsValid)
             {
                 var messages = ModelState.ToList();
                 return View("WriterAdd");
             }
-            writer.Status = true;
+            writerDto.Status = true;
             writerRepository.AddT(writer);
+            if (Convert.ToBoolean(TempData["IsFromBook"]))
+            {
+                return RedirectToAction("BookAdd", "Book");
+            }
             return RedirectToAction("Index");
         }
 

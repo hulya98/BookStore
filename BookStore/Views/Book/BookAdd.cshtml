@@ -9,8 +9,10 @@
 
     <form asp-action="BookAdd" class="form" enctype="multipart/form-data">
         <br />
-        <a href="/Writer/WriterAdd/1" class="btn btn-dark newBookButton">New Writer</a>
-        <a href="/Genre/GenreAdd/1" class="btn btn-dark newBookButton">New Genre</a>
+        <br />
+        <br />
+        <a href="/Writer/WriterAdd?IsFromBook=true" class="btn btn-dark newBookButton">New Writer</a>
+        <a href="/Genre/GenreAdd?IsFromBook=true" class="btn btn-dark newBookButton">New Genre</a>
         <br />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">

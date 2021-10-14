@@ -1,19 +1,10 @@
-﻿@model BookStore.Models.Genre
-
+﻿@model BookStore.Dtos.GenreDto
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title></title>
     <link rel="stylesheet" type="text/css" href="~/css/Genre/GenreAdd.js">
-    <script type="text/javascript">
-        function validation() {
-            Swal.fire(
-                'Success!',
-                'Genre created!',
-                'success'
-            )
-        }
-    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <link rel="stylesheet" type="text/css" href="~/css/Genre/GenreAdd.css?version=51">
@@ -26,10 +17,10 @@
             <span asp-validation-for="GenreName" class="text-dark"></span>
         </div>
         <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-dark button" onclick="validation()" ; />
+            <input type="submit" value="Create" class="btn btn-dark button" />
         </div>
     </form>
-
+ 
 
 </body>
 </html>

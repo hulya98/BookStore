@@ -14,7 +14,9 @@ namespace BookStore.Dtos
             CreateMap<Book, BookDto>();
             CreateMap<BookDto, Book>();
             CreateMap<Genre, GenreDto>();
+            CreateMap<GenreDto, Genre>();
             CreateMap<Writer, WriterDto>();
+            CreateMap<WriterDto, Writer>();
         }
     }
 }

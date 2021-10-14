@@ -37,7 +37,6 @@ namespace BookStore.Controllers
         Context context = new Context();
         public IActionResult Index()
         {
-
             var book = context.Books.Include(x => x.Writer).Include(x => x.Genre).ToList();
             return View(book.ToList());
         }
