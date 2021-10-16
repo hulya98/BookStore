@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using BookStore.Dtos;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Models.Validators
 {
-    public class WriterValidator : AbstractValidator<Writer>
+    public class WriterValidator : AbstractValidator<WriterDto>
     {
         public WriterValidator()
         {

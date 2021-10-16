@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+
 namespace BookStore.Controllers
 {
     public class GenreController : BaseController
@@ -58,7 +59,8 @@ namespace BookStore.Controllers
             }
             catch (Exception ex)
             {
-
+                Notify("Could not save data", notificationType: NotificationType.error);
+                return RedirectToAction("GenreAdd");
             }
 
             if (Convert.ToBoolean(TempData["IsFromBook"]))
@@ -72,7 +74,7 @@ namespace BookStore.Controllers
         public IActionResult GenreGet(int id)
         {
             var x = genreRepository.GetT(id);
-            Genre genre = new Genre()
+            GenreDto genre = new GenreDto()
             {
                 GenreName = x.GenreName,
                 GenreId = x.GenreId,
@@ -83,19 +85,26 @@ namespace BookStore.Controllers
 
 
         [HttpPost]
-        public IActionResult GenreUpdate(Genre genre)
+        public IActionResult GenreUpdate(GenreDto genreDto)
         {
             try
             {
+                var genre = _mapper.Map<GenreDto, Genre>(genreDto);
+
                 var x = genreRepository.GetT(genre.GenreId);
                 x.GenreName = genre.GenreName;
+                if (!ModelState.IsValid)
+                {
+                    var messages = ModelState.ToList();
+                    return View("GenreGet");
+                }
                 genreRepository.UpdateT(x);
                 Notify("Data saved successfully");
             }
             catch (Exception ex)
             {
                 Notify("Could not save data", notificationType: NotificationType.error);
-                return RedirectToAction("GenreGet", new { id = genre.GenreId });
+                return RedirectToAction("GenreGet", new { id = genreDto.GenreId });
             }
 
             return RedirectToAction("Index");

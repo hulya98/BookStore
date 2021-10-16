@@ -3,8 +3,7 @@
 }
 
 body {
-    background: url(../../images/backgroundImage1.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
+    background: url("../../images/gradient-wallpaper_1366x768_h.jpg") no-repeat center center fixed;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;

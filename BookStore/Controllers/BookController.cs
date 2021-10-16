@@ -18,7 +18,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Controllers
 {
-    public class BookController : Controller
+    public class BookController : BaseController
     {
         private readonly IWebHostEnvironment _iwebhost;
         //private IHostingEnvironment _environment;
@@ -56,6 +56,8 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> BookAdd(BookVM bookVM)
         {
+
+            //eger model is not valid olarsa ikinci defe duzgun datani daxil edib add vuranda image null gelir(cunki BookVM yeniden teyin olunur ve ne gorurse onu goturur.bunu indi image i ayri saxlamaq lazimdi ya nece?
             //AutoMapper
             var book = _mapper.Map<BookDto, Book>(bookVM.Book);
             if (ModelState.IsValid)
@@ -72,6 +74,8 @@ namespace BookStore.Controllers
                     book.ImageUrl = ImageUrl;
                 }
                 bookRepository.AddT(book);
+                Notify("Data saved successfully");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -83,7 +87,7 @@ namespace BookStore.Controllers
                 return View(bookVM);
             }
 
-            return RedirectToAction("Index");
+
         }
 
         [HttpGet]
@@ -105,38 +109,45 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> BookUpdate(BookVM bookVM)
         {
-            var book = _mapper.Map<BookDto, Book>(bookVM.Book);
-            //var x = bookRepository.GetT(book);
-            if (ModelState.IsValid)
+            try
             {
-
-                if (bookVM.Book.Image != null)
+                var book = _mapper.Map<BookDto, Book>(bookVM.Book);
+                //var x = bookRepository.GetT(book);
+                if (ModelState.IsValid)
                 {
-                    string folder = "wwwroot/images/";
-                    string ImageUrl = Guid.NewGuid().ToString() + bookVM.Book.Image.FileName;
-                    folder += ImageUrl;
-                    string serverFolder = Path.Combine(_iwebhost.WebRootPath, folder);
+                    if (bookVM.Book.Image != null)
+                    {
+                        string folder = "wwwroot/images/";
+                        string ImageUrl = Guid.NewGuid().ToString() + bookVM.Book.Image.FileName;
+                        folder += ImageUrl;
+                        string serverFolder = Path.Combine(_iwebhost.WebRootPath, folder);
 
-                    await bookVM.Book.Image.CopyToAsync(new FileStream(folder, FileMode.Create));
+                        await bookVM.Book.Image.CopyToAsync(new FileStream(folder, FileMode.Create));
 
-                    book.ImageUrl = ImageUrl;
+                        book.ImageUrl = ImageUrl;
+                    }
+                    else
+                    {
+                        book.ImageUrl = TempData["ImageUrl"].ToString();
+                    }
+                    bookRepository.UpdateT(book);
+                    Notify("Data saved successfully");
                 }
                 else
                 {
-                    book.ImageUrl = TempData["ImageUrl"].ToString();
+                    var messages = ModelState.ToList();
+                    var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList()).Where(x => x.Status == true);
+                    var writers = _mapper.Map<List<Writer>, List<WriterDto>>(writerRepository.TList()).Where(x => x.Status == true);
+                    bookVM.Genres = genres;
+                    bookVM.Writers = writers;
+                    return View(bookVM);
                 }
-                bookRepository.UpdateT(book);
             }
-            else
+            catch (Exception)
             {
-                var messages = ModelState.ToList();
-                var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList()).Where(x => x.Status == true);
-                var writers = _mapper.Map<List<Writer>, List<WriterDto>>(writerRepository.TList()).Where(x => x.Status == true);
-                bookVM.Genres = genres;
-                bookVM.Writers = writers;
-                return View(bookVM);
+                Notify("Could not save data", notificationType: NotificationType.error);
+                return RedirectToAction("BookGet", new { id = bookVM.Book.BookId });
             }
-
             return RedirectToAction("Index");
         }
 

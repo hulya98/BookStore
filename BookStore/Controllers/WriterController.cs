@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Controllers
 {
-    public class WriterController : Controller
+    public class WriterController : BaseController
     {
         WriterRepository writerRepository = new WriterRepository();
         private readonly IMapper _mapper;
@@ -34,14 +34,25 @@ namespace BookStore.Controllers
         [HttpPost]
         public IActionResult WriterAdd(WriterDto writerDto)
         {
-            var writer = _mapper.Map<WriterDto, Writer>(writerDto);
-            if (!ModelState.IsValid)
+            try
             {
-                var messages = ModelState.ToList();
-                return View("WriterAdd");
+                var writer = _mapper.Map<WriterDto, Writer>(writerDto);
+                if (!ModelState.IsValid)
+                {
+                    var messages = ModelState.ToList();
+                    return View("WriterAdd");
+                }
+                writerDto.Status = true;
+                writerRepository.AddT(writer);
+                Notify("Data saved successfully");
+
+
             }
-            writerDto.Status = true;
-            writerRepository.AddT(writer);
+            catch (Exception ex)
+            {
+                Notify("Could not save data", notificationType: NotificationType.error);
+                return RedirectToAction("WriteAdd");
+            }
             if (Convert.ToBoolean(TempData["IsFromBook"]))
             {
                 return RedirectToAction("BookAdd", "Book");
@@ -53,7 +64,7 @@ namespace BookStore.Controllers
         public IActionResult WriterGet(int id)
         {
             var x = writerRepository.GetT(id);
-            Writer writer = new Writer()
+            WriterDto writer = new WriterDto()
             {
                 WriterName = x.WriterName,
                 WriterId = x.WriterId,
@@ -63,11 +74,28 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult WriterUpdate(Writer writer)
+        public IActionResult WriterUpdate(WriterDto writerDto)
         {
-            var x = writerRepository.GetT(writer.WriterId);
-            x.WriterName = writer.WriterName;
-            writerRepository.UpdateT(x);
+            try
+            {
+                var writer = _mapper.Map<WriterDto, Writer>(writerDto);
+                var x = writerRepository.GetT(writer.WriterId);
+                x.WriterName = writer.WriterName;
+                if (!ModelState.IsValid)
+                {
+                    var messages = ModelState.ToList();
+                    return View("WriterGet");
+                }
+                writerRepository.UpdateT(x);
+                Notify("Data saved successfully");
+
+            }
+            catch (Exception ex)
+            {
+                Notify("Could not save data", notificationType: NotificationType.error);
+                return RedirectToAction("WriterGet", new { id = writerDto.WriterId });
+
+            }
             return RedirectToAction("Index");
         }
 

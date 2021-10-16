@@ -11,49 +11,55 @@
         <br />
         <br />
         <br />
-        <a href="/Writer/WriterAdd?IsFromBook=true" class="btn btn-dark newBookButton">New Writer</a>
+        <a href="/Writer/WriterAdd?IsFromBook=true" class="btn btn-dark newBookButtonW">New Writer</a>
         <a href="/Genre/GenreAdd?IsFromBook=true" class="btn btn-dark newBookButton">New Genre</a>
-        <br />
+
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="@Model.Book.BookName" class="control-label"></label>
-            <input asp-for="@Model.Book.BookName" class="form-control" />
-            <span asp-validation-for="@Model.Book.BookName" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6">
 
-            <label asp-for="@Model.Book.Image" class="control-label"></label>
-            <div class="custom-file">
-                <input asp-for="@Model.Book.Image" class="custom-file-input" id="customFile" />
-                <label class="custom-file-label" for="customFile">ChooseFile</label>
+                    <label asp-for="@Model.Book.BookName" class="control-label"></label>
+                    <input asp-for="@Model.Book.BookName" class="form-control" />
+                    <span asp-validation-for="@Model.Book.BookName" class="text-danger"></span>
+
+                    <label asp-for="@Model.Book.Image" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="@Model.Book.Image" class="custom-file-input" id="customFile" />
+                        <label class="custom-file-label" for="customFile">ChooseFile</label>
+                    </div>
+                    <span asp-validation-for="@Model.Book.ImageUrl" class="text-danger"></span>
+
+                    <label class="control-label">WriterName</label>
+                    <select asp-for="@Model.Book.WriterId" class="form-control" asp-items="@(new SelectList(Model.Writers,"WriterId","WriterName"))">
+                        <option value="">Please select one</option>
+                    </select>
+                    <span asp-validation-for="@Model.Book.WriterId" class="text-danger"></span>
+
+                    <label class="control-label">GenreName</label>
+                    <select asp-for="@Model.Book.GenreId" class="form-control" asp-items="@(new SelectList(Model.Genres,"GenreId","GenreName"))">
+                        <option value="">Please select one</option>
+                    </select>
+                    <span asp-validation-for="@Model.Book.GenreId" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="@Model.Book.Price" class="control-label"></label>
+                    <input asp-for="@Model.Book.Price" class="form-control" />
+                    <span asp-validation-for="@Model.Book.Price" class="text-danger"></span>
+
+                    <label asp-for="@Model.Book.SalePercent" class="control-label"></label>
+                    <input asp-for="@Model.Book.SalePercent" class="form-control" />
+
+                    <label asp-for="@Model.Book.DiscountedPrice" class="control-label"></label>
+                    <input asp-for="@Model.Book.DiscountedPrice" class="form-control" />
+                    <span asp-validation-for="@Model.Book.DiscountedPrice" class="text-danger"></span>
+
+
+                    <label asp-for="@Model.Book.Stock" class="control-label"></label>
+                    <input asp-for="@Model.Book.Stock" class="form-control" />
+                    <span asp-validation-for="@Model.Book.Stock" class="text-danger"></span>
+                </div>
             </div>
-            <span asp-validation-for="@Model.Book.ImageUrl" class="text-danger"></span>
-
-            <label class="control-label">WriterName</label>
-            <select asp-for="@Model.Book.WriterId" class="form-control" asp-items="@(new SelectList(Model.Writers,"WriterId","WriterName"))">
-                <option value="">Please select one</option>
-            </select>
-            <span asp-validation-for="@Model.Book.WriterId" class="text-danger"></span>
-
-            <label class="control-label">GenreName</label>
-            <select asp-for="@Model.Book.GenreId" class="form-control" asp-items="@(new SelectList(Model.Genres,"GenreId","GenreName"))">
-                <option value="">Please select one</option>
-            </select>
-            <span asp-validation-for="@Model.Book.GenreId" class="text-danger"></span>
-
-            <label asp-for="@Model.Book.Price" class="control-label"></label>
-            <input asp-for="@Model.Book.Price" class="form-control" />
-            <span asp-validation-for="@Model.Book.Price" class="text-danger"></span>
-
-            <label asp-for="@Model.Book.SalePercent" class="control-label"></label>
-            <input asp-for="@Model.Book.SalePercent" class="form-control" />
-
-            <label asp-for="@Model.Book.DiscountedPrice" class="control-label"></label>
-            <input asp-for="@Model.Book.DiscountedPrice" class="form-control" />
-            <span asp-validation-for="@Model.Book.DiscountedPrice" class="text-danger"></span>
-
-
-            <label asp-for="@Model.Book.Stock" class="control-label"></label>
-            <input asp-for="@Model.Book.Stock" class="form-control" />
-            <span asp-validation-for="@Model.Book.Stock" class="text-danger"></span>
         </div>
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-dark button" />
