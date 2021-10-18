@@ -44,7 +44,7 @@ namespace BookStore.Controllers
                 }
                 writerDto.Status = true;
                 writerRepository.AddT(writer);
-                Notify("Data saved successfully");
+                //Notify("Data saved successfully");
 
 
             }
