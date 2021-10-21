@@ -42,9 +42,9 @@ namespace BookStore.Controllers
                     var messages = ModelState.ToList();
                     return View("WriterAdd");
                 }
-                writerDto.Status = true;
+                writer.Status = true;
                 writerRepository.AddT(writer);
-                //Notify("Data saved successfully");
+                Notify("Data saved successfully");
 
 
             }
@@ -104,6 +104,7 @@ namespace BookStore.Controllers
             var x = writerRepository.GetT(id);
             x.Status = false;
             writerRepository.UpdateT(x);
+            Notify("Data saved successfully");
             return RedirectToAction("Index");
         }
     }

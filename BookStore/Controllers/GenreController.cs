@@ -116,6 +116,7 @@ namespace BookStore.Controllers
             var x = genreRepository.GetT(id);
             x.Status = false;
             genreRepository.UpdateT(x);
+            Notify("Data saved successfully");
             return RedirectToAction("Index");
         }
     }

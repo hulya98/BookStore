@@ -5,8 +5,9 @@
     <title></title>
 </head>
 <body>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/css/Book/BookAdd.css?v=002">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
     <br />
     <br />
     <br />
@@ -48,6 +49,9 @@
                     <input asp-for="@Model.Book.BookName" class="form-control" />
                     <span asp-validation-for="@Model.Book.BookName" class="text-danger"></span>
                     <br />
+                    <label asp-for="@Model.Book.Description" class="control-label"></label>
+                    <textarea asp-for="@Model.Book.Description" class="form-control"></textarea>
+                    <br />
                     <label class="control-label">WriterName</label>
                     <select asp-for="@Model.Book.WriterId" class="form-control" asp-items="@(new SelectList(Model.Writers,"WriterId","WriterName"))">
                         <option value="">Please select one</option>
@@ -87,12 +91,6 @@
                     </div>
                     <span asp-validation-for="@Model.Book.ImageUrl" class="text-danger"></span>
 
-
-                    @*<label asp-for="@Model.Book.Image" class="control-label"></label>
-                        <div class="custom-file">
-                            <input asp-for="@Model.Book.Image" class="custom-file-input" id="customFile" />
-                            <label class="custom-file-label" for="customFile">ChooseFile</label>
-                        </div>*@
                 </div>
             </div>
         </div>

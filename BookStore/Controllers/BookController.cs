@@ -155,6 +155,7 @@ namespace BookStore.Controllers
         {
             var x = bookRepository.GetT(id);
             bookRepository.DeleteT(x);
+            Notify("Data saved successfully");
             return RedirectToAction("Index");
         }
     }
