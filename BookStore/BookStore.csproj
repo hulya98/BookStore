@@ -25,4 +25,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\2114_pixie\assets\js\" />
+    <Folder Include="wwwroot\vendor\" />
+  </ItemGroup>
+
 </Project>
