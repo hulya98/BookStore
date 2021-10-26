@@ -67,7 +67,7 @@ namespace BookStore.Controllers
                     string folder = "wwwroot/images/";
                     string ImageUrl = Guid.NewGuid().ToString() + bookVM.Book.Image.FileName;
                     folder += ImageUrl;
-                    string serverFolder = Path.Combine(_iwebhost.WebRootPath, folder);
+                    //string serverFolder = Path.Combine(_iwebhost.WebRootPath, folder);
 
                     await bookVM.Book.Image.CopyToAsync(new FileStream(folder, FileMode.Create));
 

@@ -10,6 +10,7 @@ namespace BookStore.ViewModels
     {
         public IEnumerable<GenreDto> Genres { get; set; }
         public IEnumerable<BookDto> Books { get; set; }
+        public IEnumerable<CarouselDto> Carousels { get; set; }
 
     }
 }

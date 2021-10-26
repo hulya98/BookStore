@@ -22,14 +22,17 @@ namespace BookStore.Controllers
         Context context = new Context();
         GenreRepository genreRepository = new GenreRepository();
         BookRepository bookRepository = new BookRepository();
+        CarouselRepository carouselRepository = new CarouselRepository();
         public IActionResult Index()
         {
             var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList());
             var books = _mapper.Map<List<Book>, List<BookDto>>(bookRepository.TList());
+            var carousels = _mapper.Map<List<Carousel>, List<CarouselDto>>(carouselRepository.TList());
             ShopVM shopVM = new ShopVM()
             {
                 Genres = genres,
-                Books = books
+                Books = books,
+                Carousels = carousels
             };
             return View(shopVM);
         }

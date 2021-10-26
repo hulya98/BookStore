@@ -1,0 +1,76 @@
+﻿@model BookStore.Dtos.CarouselDto
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title></title>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <link rel="stylesheet" type="text/css" href="~/css/Carousel/CarouselAdd.css?version=51">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <br />
+    <br />
+    <br />
+    <script type="text/javascript">
+        $(function () {
+            $("#fileupload").change(function () {
+                $("#dvPreview").html("");
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                if (regex.test($(this).val().toLowerCase())) {
+                    if (typeof (FileReader) != "undefined") {
+                        $("#dvPreview").show();
+                        $("#dvPreview").append("<img />");
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $("#dvPreview img").attr("src", e.target.result);
+                            $("#dvPreview img").attr("style", "height:120px;width: 100px");
+                        }
+                        reader.readAsDataURL($(this)[0].files[0]);
+                    } else {
+                        alert("This browser does not support FileReader.");
+                    }
+                } else {
+                    alert("Please upload a valid image file.");
+                }
+            });
+        });
+    </script>
+
+
+    <script src="~/js/site.js"></script>
+    <form asp-action="CarouselAdd" class="form" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-dark"></div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="Text" class="control-label"></label>
+                    <input asp-for="Text" class="form-control" />
+                    <span asp-validation-for="Text" class="text-dark"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Image" class="control-label"></label>
+                    <div class="custom-file">
+                        <input id="fileupload" type="file" asp-for="Image" />
+                        <hr />
+                        <div id="dvPreview"></div>
+                    </div>
+                    <span asp-validation-for="Image" class="text-danger"></span>
+
+
+                </div>
+            </div>
+        </div>
+       
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-dark button" />
+        </div>
+    </form>
+
+
+</body>
+</html>

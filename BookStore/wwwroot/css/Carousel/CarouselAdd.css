@@ -1,0 +1,19 @@
+﻿.form-group {
+    margin: 30px 350px 100px 350px;
+}
+
+body {
+    background: url("../../images/gradient-wallpaper_1366x768_h.jpg") no-repeat center center fixed;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.button {
+    margin: 0px;
+}
+
+
+.form-group {
+    margin-top: 100px;
+}
