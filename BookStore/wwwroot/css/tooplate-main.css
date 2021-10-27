@@ -14,7 +14,7 @@ body {
 p {
     margin-bottom: 0px;
     font-size: 14px;
-    color: #4a4a4a;
+    color: #000000;
     line-height: 24px;
 }
 
@@ -27,7 +27,7 @@ a {
 }
 
 .main-button a {
-    background-color: #ba6ca6;
+    background-color: #890808;
     border-radius: 5px;
     padding: 10px 15px;
     display: inline-block;
@@ -52,19 +52,19 @@ a {
     .section-heading .line-dec {
         width: 30px;
         height: 5px;
-        background-color: #ba6ca6;
+        background-color: #890808;
     }
 
     .section-heading h1 {
         font-size: 22px;
         font-weight: 700;
-        color: #1e1e1e;
+        color: #890808;
         margin-top: 15px;
     }
 
 /* Pre Header Style */
 #pre-header {
-    background-color: #ba6ca6;
+    background-color: #890808;
     text-align: center;
 }
 
@@ -92,7 +92,7 @@ a {
     z-index: 999;
     position: absolute;
     left: 50%;
-    top: 105px;
+    top: 145px;
     transform: translateX(-50%);
 }
 
@@ -104,7 +104,7 @@ a {
     text-transform: uppercase;
     font-size: 15px;
     font-weight: 700;
-    color: #1e1e1e;
+    color: #000000;
     transition: all 0.5s;
 }
 
@@ -113,13 +113,13 @@ a {
     .navbar-dark .navbar-nav .nav-link.active,
     .navbar-dark .navbar-nav .nav-link.show,
     .navbar-dark .navbar-nav .show > .nav-link {
-        color: #3a8bcd;
+        color: #890808;
     }
 
 .navbar:after {
     width: 100%;
     height: 1px;
-    background-color: #ba6ca6;
+    background-color: #890808;
     content: '';
     position: absolute;
     left: 0;
@@ -131,8 +131,8 @@ a {
 }
 
 .navbar-dark .navbar-toggler {
-    border-color: #ba6ca6;
-    background-color: #ba6ca6;
+    border-color: #890808;
+    background-color: #890808;
     height: 50px;
     outline: none;
 }
@@ -148,9 +148,10 @@ a {
 .banner {
     margin-top: 55px;
     /*background: url(../images/open-book-pile-old-books-panorama-good-copy-space-120845423.jpg) no-repeat;*/
-    background-size: unset;
+    /*  background-size: unset;
     padding: 0px 0px;
-    background-position: unset;
+    background-position: unset;*/
+    width: 100%;
 }
 
 
@@ -177,17 +178,17 @@ a {
     .featured-item h4 {
         font-size: 17px;
         font-weight: 700;
-        color: #1e1e1e;
+        color: #000000;
         margin-top: 15px;
         transition: all 0.5s;
     }
 
     .featured-item:hover h4 {
-        color: #3a8bcd;
+        color: #890808;
     }
 
     .featured-item h6 {
-        color: #3a8bcd;
+        color: #000000;
         font-size: 15px;
         font-weight: 700;
         margin-bottom: 0px;
@@ -203,11 +204,11 @@ a {
     }
 
     .owl-theme .owl-dots .active span {
-        background-color: #ba6ca6 !important;
+        background-color: #890808 !important;
     }
 
     .owl-theme .owl-dots .owl-dot span {
-        background-color: #ba6ca6;
+        background-color: #890808;
         width: 8px;
         height: 8px;
         display: inline-block;
@@ -219,7 +220,7 @@ a {
 
 /* Subscribe Style */
 .subscribe-form {
-    background-color: #ba6ca6;
+    background-color: #890808;
     padding: 80px 0px;
     text-align: center;
 }
@@ -275,7 +276,7 @@ a {
             border-radius: 5px;
             padding: 10px 15px;
             display: inline-block;
-            color: #3a8bcd;
+            color: #890808;
             font-size: 14px;
             text-transform: uppercase;
             font-weight: 300;
@@ -324,7 +325,7 @@ a {
         }
 
             .footer .footer-menu a:hover {
-                color: #3a8bcd;
+                color: #890808;
                 text-decoration: none;
             }
 
@@ -350,7 +351,7 @@ a {
         }
 
             .footer .social-icons a:hover {
-                background-color: #ba6ca6;
+                background-color: #890808;
             }
 
 /* Sub Footer Style */
@@ -366,7 +367,7 @@ a {
     }
 
     .sub-footer a {
-        color: #ba6ca6;
+        color: #890808;
         text-decoration: none;
     }
 
@@ -396,7 +397,7 @@ a {
     }
 
     .featured .featured-item:hover h4 {
-        color: #3a8bcd;
+        color: #890808;
     }
 
 #filter button {
@@ -405,12 +406,12 @@ a {
 
 #filter .btn-primary.focus,
 .btn-primary:focus {
-    color: #3a8bcd !important;
+    color: #890808 !important;
     box-shadow: none !important;
 }
 
 #filters .btn-primary {
-    color: #1e1e1e;
+    color: #890808;
     border: none;
     font-size: 15px;
     font-weight: 700;
@@ -463,7 +464,7 @@ a {
             border: 1px solid #eee;
             border-radius: 5px;
             font-weight: 700;
-            color: #1e1e1e;
+            color: #000000;
             font-size: 15px;
             text-decoration: none;
             transition: all 0.5s;
@@ -471,8 +472,8 @@ a {
 
             .page-navigation ul li a:hover,
             .page-navigation ul li.current-page a {
-                background-color: #ba6ca6;
-                border-color: #ba6ca6;
+                background-color: #000000;
+                border-color: #000000;
                 color: #fff;
             }
 
@@ -504,7 +505,7 @@ a {
 }
 
 .single-product .right-content h6 {
-    color: #3a8bcd;
+    color: #890808;
     font-size: 17px;
     font-weight: 700;
     margin-top: 10px;
@@ -517,7 +518,7 @@ a {
 
 .single-product .right-content span {
     font-size: 14px;
-    color: #3a8bcd;
+    color: #890808;
     font-weight: 500;
     display: inline-block;
     margin-bottom: 15px;
@@ -545,7 +546,7 @@ a {
 .single-product .right-content .button {
     margin-left: 15px;
     cursor: pointer;
-    background-color: #3a8bcd;
+    background-color: #890808;
     outline: none;
     border-radius: 5px;
     padding: 10px 15px;
@@ -576,11 +577,11 @@ a {
     }
 
         .single-product .right-content .down-content span a:hover {
-            color: #3a8bcd;
+            color: #890808;
         }
 
             .single-product .right-content .down-content span a:hover i {
-                background-color: #3a8bcd;
+                background-color: #890808;
             }
 
         .single-product .right-content .down-content span a i {
@@ -665,7 +666,7 @@ a {
     }
 
     .about-page .right-content span a:hover i {
-        background-color: #3a8bcd;
+        background-color: #890808;
     }
 
 
@@ -728,12 +729,12 @@ a {
     }
 
     .contact-page .right-content span a:hover i {
-        background-color: #3a8bcd;
+        background-color: #890808;
     }
 
     .contact-page .right-content .button {
         cursor: pointer;
-        background-color: #3a8bcd;
+        background-color: #890808;
         outline: none;
         border-radius: 5px;
         padding: 10px 15px;
