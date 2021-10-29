@@ -23,8 +23,20 @@
     -->
 </head>
 <body>
+
+    <br />
     <div class="banner">
         <div class="container">
+            <form asp-controller="Shop" asp-action="Search">
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control searchPanel" placeholder="Search Book,Writer or Genre" aria-label="Search Book,Writer or Genre" aria-describedby="basic-addon2" name="item">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
             <div class="row">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -61,6 +73,39 @@
     <div class="featured-items">
         <div class="container">
             <div class="row">
+
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <div class="line-dec"></div>
+                        <h1>New Books</h1>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme w-auto">
+                        @foreach (var book in Model.NewBooks)
+                        {
+                            <a href="single-product.html">
+                                <div class="featured-item border border-secondary">
+                                    <img src="/images/@book.ImageUrl" style="height:280px">
+                                    <h4>@book.BookName</h4>
+                                    @if (book.Price == book.DiscountedPrice)
+                                    {
+                                        <span style="color:black" class="newPrice">@book.DiscountedPrice man.</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="text-decoration:line-through;color:black" class="oldPrice">@book.Price man.</span>
+                                        <span class="newPrice" style="color:black">  @book.DiscountedPrice man.</span>
+                                    }
+                                </div>
+                            </a>
+
+                        }
+                    </div>
+                </div>
+
+
+
                 @foreach (var genre in Model.Genres)
                 {
                     <div class="col-md-12">
@@ -79,7 +124,15 @@
                                         <div class="featured-item border border-secondary">
                                             <img src="/images/@book.ImageUrl" style="height:280px">
                                             <h4>@book.BookName</h4>
-                                            <h6>@book.Price man.</h6>
+                                            @if (book.Price == book.DiscountedPrice)
+                                            {
+                                                <span style="color:black" class="newPrice">@book.DiscountedPrice man.</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="text-decoration:line-through;color:black" class="oldPrice">@book.Price man.</span>
+                                                <span class="newPrice" style="color:black">  @book.DiscountedPrice man.</span>
+                                            }
                                         </div>
                                     </a>
 

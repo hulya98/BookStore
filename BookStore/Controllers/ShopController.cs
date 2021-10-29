@@ -25,16 +25,37 @@ namespace BookStore.Controllers
         CarouselRepository carouselRepository = new CarouselRepository();
         public IActionResult Index()
         {
+            System.Random rnd = new System.Random();
+            var chosenItems = bookRepository.TList();
+            List<Book> newChosenItems = new List<Book>();
+
+            for (int i = 1; i <= chosenItems.Count; i++)
+            {
+                int index = rnd.Next(chosenItems.Count);
+                if (!newChosenItems.Contains(chosenItems[index]))
+                {
+                    newChosenItems.Add(chosenItems[index]);
+                }
+            }
+
+
             var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList());
             var books = _mapper.Map<List<Book>, List<BookDto>>(bookRepository.TList());
+            var newBooks = _mapper.Map<List<Book>, List<BookDto>>(newChosenItems.OrderByDescending(x => x.BookId).Take(10).ToList());
             var carousels = _mapper.Map<List<Carousel>, List<CarouselDto>>(carouselRepository.TList());
             ShopVM shopVM = new ShopVM()
             {
                 Genres = genres,
                 Books = books,
+                NewBooks = newBooks,
                 Carousels = carousels
             };
             return View(shopVM);
+        }
+
+        public IActionResult Search(string item)
+        {
+            return View("Index");
         }
     }
 }
