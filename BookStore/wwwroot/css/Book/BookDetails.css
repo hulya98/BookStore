@@ -1,0 +1,20 @@
+﻿.single-product {
+    margin-top: 150px;
+}
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.image {
+    margin: 25px;
+}
+
+.card {
+    border: 2px solid #9251a5;
+}
+
+.cardTitle {
+    color: #9251a5;
+}

@@ -35,7 +35,7 @@
                         <tr>
                             <th scope="row">@index</th>
                             <td>@item.BookName</td>
-                            <td><img src="/images/@item.ImageUrl" width="80" height="100" /></td>
+                            <td><a href="/Book/BookDetails/@item.BookId"><img src="/images/@item.ImageUrl" width="80" height="100" /></a></td>
                             <td>@item.Writer.WriterName</td>
                             <td>@item.Genre.GenreName</td>
                             <td>@item.Price</td>

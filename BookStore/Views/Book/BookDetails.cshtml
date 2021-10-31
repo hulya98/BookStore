@@ -1,0 +1,61 @@
+﻿@model List<BookStore.Models.Book>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BookDetails</title>
+    <link rel="stylesheet" href="~/css/Book/BookDetails.css" />
+</head>
+<body>
+    <!-- Page Content -->
+    <!-- Single Starts Here -->
+    <div class="single-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+                        <div class="card-horizontal">
+                            <div class="img-square-wrapper">
+                                <img style="width:250px;height:350px" src=/images/@item.ImageUrl alt="Card image cap" class="image">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title cardTitle">@item.BookName</h4>
+                                <h5 class="card-subtitle">Writer : @item.Writer.WriterName</h5>
+                                <br />
+                                <h6 class="card-subtitle">Genre : @item.Genre.GenreName</h6>
+                                <br />
+                                <span class="card-text">@Html.Raw(item.Description)</span>
+                                <br />
+                                <br />
+                                <div class="border-info">
+                                    @if (item.Price == item.DiscountedPrice)
+                                    {
+                                        <h5 style="color:black" class="newPrice">@item.DiscountedPrice man.</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5 style="text-decoration:line-through;color:black" class="oldPrice">@item.Price man.</h5>
+                                        <h5 class="newPrice" style="color:black">  @item.DiscountedPrice man.</h5>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"></small>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Single Page Ends Here -->
+</body>
+</html>

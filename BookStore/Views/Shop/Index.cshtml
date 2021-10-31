@@ -84,7 +84,7 @@
                     <div class="owl-carousel owl-theme w-auto">
                         @foreach (var book in Model.NewBooks)
                         {
-                            <a href="single-product.html">
+                            <a href="/Shop/BookDetails/@book.BookId">
                                 <div class="featured-item border border-secondary">
                                     <img src="/images/@book.ImageUrl" style="height:280px">
                                     <h4>@book.BookName</h4>
@@ -120,7 +120,7 @@
                             {
                                 @if (genre.GenreId == book.GenreId)
                                 {
-                                    <a href="single-product.html">
+                                    <a href="/Shop/BookDetails/@book.BookId">
                                         <div class="featured-item border border-secondary">
                                             <img src="/images/@book.ImageUrl" style="height:280px">
                                             <h4>@book.BookName</h4>

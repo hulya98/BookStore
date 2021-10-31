@@ -55,7 +55,16 @@ namespace BookStore.Controllers
 
         public IActionResult Search(string item)
         {
-            return View("Index");
+            string res = item.ReplaceForSearch();
+            var book = context.Books.Include(x => x.Writer).Include(x => x.Genre).Where(x => x.BookName.Replace("ə", "e").Replace("ş", "s").Replace("ğ", "g").Replace("i", "ı").Replace("ç", "c").Replace("ü", "u") == res).ToList();
+            return View("BookDetails", book);
+        }
+
+
+        public IActionResult BookDetails(int id)
+        {
+            var book = context.Books.Include(x => x.Writer).Include(x => x.Genre).Where(x => x.BookId == id).ToList();
+            return View(book.ToList());
         }
     }
 }
