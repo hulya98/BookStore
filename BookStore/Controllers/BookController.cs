@@ -56,8 +56,6 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<IActionResult> BookAdd(BookVM bookVM)
         {
-
-            //eger model is not valid olarsa ikinci defe duzgun datani daxil edib add vuranda image null gelir(cunki BookVM yeniden teyin olunur ve ne gorurse onu goturur.bunu indi image i ayri saxlamaq lazimdi ya nece?
             //AutoMapper
             var book = _mapper.Map<BookDto, Book>(bookVM.Book);
             if (ModelState.IsValid)
@@ -86,8 +84,6 @@ namespace BookStore.Controllers
                 bookVM.Writers = writers;
                 return View(bookVM);
             }
-
-
         }
 
         [HttpGet]
@@ -112,7 +108,6 @@ namespace BookStore.Controllers
             try
             {
                 var book = _mapper.Map<BookDto, Book>(bookVM.Book);
-                //var x = bookRepository.GetT(book);
                 if (ModelState.IsValid)
                 {
                     if (bookVM.Book.Image != null)
@@ -161,7 +156,6 @@ namespace BookStore.Controllers
 
         public IActionResult BookDetails(int id)
         {
-
             var book = context.Books.Include(x => x.Writer).Include(x => x.Genre).Where(x => x.BookId == id).ToList();
             return View(book.ToList());
         }

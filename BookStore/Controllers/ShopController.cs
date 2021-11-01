@@ -38,7 +38,6 @@ namespace BookStore.Controllers
                 }
             }
 
-
             var genres = _mapper.Map<List<Genre>, List<GenreDto>>(genreRepository.TList());
             var books = _mapper.Map<List<Book>, List<BookDto>>(bookRepository.TList());
             var newBooks = _mapper.Map<List<Book>, List<BookDto>>(newChosenItems.OrderByDescending(x => x.BookId).Take(10).ToList());
@@ -55,16 +54,66 @@ namespace BookStore.Controllers
 
         public IActionResult Search(string item)
         {
-            string res = item.ReplaceForSearch();
-            var book = context.Books.Include(x => x.Writer).Include(x => x.Genre).Where(x => x.BookName.Replace("ə", "e").Replace("ş", "s").Replace("ğ", "g").Replace("i", "ı").Replace("ç", "c").Replace("ü", "u") == res).ToList();
-            return View("BookDetails", book);
-        }
+            if (item != null)
+            {
+                string res = Methods.ReplaceForSearch(item);
+                var book = context.Books.Include(x => x.Writer).Include(x => x.Genre).Where(x => x.BookName.Replace("ə", "e").Replace("ş", "s").Replace("ğ", "g").Replace("i", "ı").Replace("ç", "c").Replace("ü", "u").Contains(res)).ToList();
+                var genre = context.Genres.Where(x => x.GenreName.Contains(item)).Where(x => x.Status == true).ToList();
+                var writer = context.Writers.Where(x => x.WriterName.Contains(item)).Where(x => x.Status == true).ToList();
+                if (book.Count != 0)
+                {
+                    var resBook = _mapper.Map<List<Book>, List<BookDto>>(book);
+                    List<Book> likeBookForGenre = context.Books.Where(x => x.GenreId == book[0].GenreId).ToList();
+                    likeBookForGenre.Remove(book[0]);
+                    var resLikeBookForGenre = _mapper.Map<List<Book>, List<BookDto>>(likeBookForGenre);
+                    SearchVM searchVM = new SearchVM
+                    {
+                        BookDtos = resBook,
+                        LikeBookForGenre = resLikeBookForGenre
+                    };
+                    return View("BookDetails", searchVM);
+                }
+                else if (genre.Count != 0)
+                {
+                    List<Book> BookForGenre = context.Books.Where(x => x.GenreId == genre[0].GenreId).ToList();
+                    var ResBookForGenre = _mapper.Map<List<Book>, List<BookDto>>(BookForGenre);
+                    SearchVM searchVM = new SearchVM
+                    {
+                        BookDtos = ResBookForGenre,
+                        GenreName = genre[0].GenreName
+                    };
+                    return View("SearchResult", searchVM);
+                }
+                else if (writer.Count != 0)
+                {
+                    List<Book> BookForWriter = context.Books.Where(x => x.WriterId == writer[0].WriterId).ToList();
+                    var ResBookForWriter = _mapper.Map<List<Book>, List<BookDto>>(BookForWriter);
+                    SearchVM searchVM = new SearchVM
+                    {
+                        BookDtos = ResBookForWriter,
+                        WriterName = writer[0].WriterName
+                    };
+                    return View("SearchResult", searchVM);
+                }
+                return View("ErrorPage");
+            }
+            return RedirectToAction("Index");
 
+        }
 
         public IActionResult BookDetails(int id)
         {
             var book = context.Books.Include(x => x.Writer).Include(x => x.Genre).Where(x => x.BookId == id).ToList();
-            return View(book.ToList());
+            var resBook = _mapper.Map<List<Book>, List<BookDto>>(book);
+            var likeBookForGenre = context.Books.Where(x => x.GenreId == book[0].GenreId).ToList();
+            likeBookForGenre.Remove(book[0]);
+            var resLikeBookForGenre = _mapper.Map<List<Book>, List<BookDto>>(likeBookForGenre);
+            SearchVM searchVM = new SearchVM
+            {
+                BookDtos = resBook,
+                LikeBookForGenre = resLikeBookForGenre
+            };
+            return View(searchVM);
         }
     }
 }
