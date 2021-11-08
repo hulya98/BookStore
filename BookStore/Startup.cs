@@ -29,7 +29,6 @@ namespace BookStore
         {
             //services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddAutoMapper(typeof(MappingProfile));
-
             services.AddControllersWithViews(options => options.EnableEndpointRouting = false).AddFluentValidation((x => x.RegisterValidatorsFromAssemblyContaining<Startup>()));
         }
 
@@ -50,7 +49,6 @@ namespace BookStore
                     name: "default",
                     template: "{controller=Book}/{action=Index}/{id?}");
             });
-
         }
     }
 }

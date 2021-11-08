@@ -9,20 +9,6 @@
 
 </head>
 <body>
-    <div class="banner">
-        <div class="container">
-            <form asp-controller="Shop" asp-action="Search">
-                <div class="row">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control searchPanel" style="margin-top:18px" placeholder="Search Book,Writer or Genre" aria-label="Search Book,Writer or Genre" aria-describedby="basic-addon2" name="item">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" style="margin-top:18px" type="submit">Search</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
     @foreach (var item in Model.BookDtos)
     {
         <div class="single-product">

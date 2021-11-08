@@ -115,5 +115,10 @@ namespace BookStore.Controllers
             };
             return View(searchVM);
         }
+
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
     }
 }

@@ -147,7 +147,7 @@ a {
 }
 /* Banner Style */
 .banner {
-    margin-top: 58px;
+    
     /*background: url(../images/open-book-pile-old-books-panorama-good-copy-space-120845423.jpg) no-repeat;*/
     /*  background-size: unset;
     padding: 0px 0px;
@@ -156,7 +156,7 @@ a {
 }
 
     .banner .searchPanel {
-        border-inline-color: #890808
+        border-inline-color: #890808;
     }
 
 /* Featured Style */
@@ -200,7 +200,7 @@ a {
 
 .owl-theme .owl-dots {
     text-align: center;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
 }
 
     .owl-theme .owl-dots .owl-dot {
@@ -495,7 +495,7 @@ a {
 }
 
 #carousel {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 
     #carousel .slides li {
@@ -618,146 +618,6 @@ a {
     color: #4a4a4a;
     font-weight: 400;
 }
-
-
-
-/* About Us Style */
-.about-page {
-    margin-top: 50px;
-    margin-bottom: 80px;
-}
-
-    .about-page .right-content h4 {
-        font-size: 17px;
-        font-weight: 700;
-        margin-top: 0px;
-        margin-bottom: 20px;
-    }
-
-    .about-page .left-image img {
-        max-width: 100%;
-    }
-
-    .about-page .right-content span {
-        display: inline-block;
-        margin-left: 8px;
-    }
-
-        .about-page .right-content span a i {
-            transition: all 0.5s;
-            background-color: #aaa;
-            width: 26px;
-            height: 26px;
-            display: inline-block;
-            text-align: center;
-            line-height: 26px;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 12px;
-            margin-right: 5px;
-        }
-
-    .about-page .right-content .share {
-        margin-top: 20px;
-        border-top: 1px solid #eee;
-        padding: 15px 0px;
-    }
-
-    .about-page .right-content h6 {
-        font-size: 14px;
-        color: #4a4a4a;
-        font-weight: 400;
-    }
-
-    .about-page .right-content span a:hover i {
-        background-color: #890808;
-    }
-
-
-
-
-/* Contact Page Style */
-.contact-page {
-    margin-top: 50px;
-    margin-bottom: 80px;
-}
-
-    .contact-page .right-content input,
-    .contact-page .right-content textarea {
-        border-radius: 0px;
-        outline: none;
-        box-shadow: none;
-        font-size: 14px;
-        margin-bottom: 30px;
-    }
-
-    .contact-page .right-content input {
-        height: 44px;
-        line-height: 44px;
-    }
-
-    .contact-page .right-content textarea {
-        height: 200px;
-        max-height: 280px;
-    }
-
-    .contact-page .right-content span {
-        display: inline-block;
-        margin-left: 8px;
-    }
-
-        .contact-page .right-content span a i {
-            transition: all 0.5s;
-            background-color: #aaa;
-            width: 26px;
-            height: 26px;
-            display: inline-block;
-            text-align: center;
-            line-height: 26px;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 12px;
-            margin-right: 5px;
-        }
-
-    .contact-page .right-content .share {
-        margin-top: 30px;
-        border-top: 1px solid #eee;
-        padding: 15px 0px;
-    }
-
-    .contact-page .right-content h6 {
-        font-size: 14px;
-        color: #4a4a4a;
-        font-weight: 400;
-    }
-
-    .contact-page .right-content span a:hover i {
-        background-color: #890808;
-    }
-
-    .contact-page .right-content .button {
-        cursor: pointer;
-        background-color: #890808;
-        outline: none;
-        border-radius: 5px;
-        padding: 10px 15px;
-        display: inline-block;
-        color: #fff;
-        font-size: 14px;
-        text-transform: uppercase;
-        font-weight: 300;
-        letter-spacing: 0.4px;
-        text-decoration: none;
-        transition: all 0.5s;
-        box-shadow: none;
-        border: none;
-    }
-
-
-
-
-
 
 /* Responsive Style */
 @media (max-width: 991px) {

@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-
+    <link href="~/css/fontawesome.css" rel="stylesheet" />
     <title>Book Store</title>
 
     <!-- Bootstrap core CSS -->
@@ -55,19 +55,26 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.html">Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="/Shop/ContactUs/">Contact Us</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
+    <div class="banner">
+        <div class="container">
+            <form asp-controller="Shop" asp-action="Search">
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" style="margin-top:78px" placeholder="Search Book,Writer or Genre" aria-label="Search Book,Writer or Genre" aria-describedby="basic-addon2" name="item">
+                        <div class="input-group-append">
+                            <search-button display="Search"></search-button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     @RenderBody()

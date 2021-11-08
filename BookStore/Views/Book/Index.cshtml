@@ -10,48 +10,9 @@
 <body>
     <div class="main">
         <a href="/Book/BookAdd/" class="btn btn-dark newBookButton">New Book</a>
+        @*@Html.Partial("BookList", Model);*@
 
-        <div style="height: 500px;overflow: scroll;">
-            <table class="table table-fixed table-bordered table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Book Name</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Writer</th>
-                        <th scope="col">Genre</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sale Percent</th>
-                        <th scope="col">Discounted Price</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Update</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{int index = 1; }
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <th scope="row">@index</th>
-                            <td>@item.BookName</td>
-                            <td><a href="/Book/BookDetails/@item.BookId"><img src="/images/@item.ImageUrl" width="80" height="100" /></a></td>
-                            <td>@item.Writer.WriterName</td>
-                            <td>@item.Genre.GenreName</td>
-                            <td>@item.Price</td>
-                            <td>@item.SalePercent</td>
-                            <td>@item.DiscountedPrice</td>
-                            <td>@item.Stock</td>
-                            <td><a href="/Book/BookGet/@item.BookId" class="btn btn-outline-primary">Update</a></td>
-                            <td><a href="/Book/BookDelete/@item.BookId" class="btn btn-outline-danger">Delete</a></td>
-                        </tr>
-
-                        index++;
-                    }
-
-                </tbody>
-            </table>
-        </div>
+        @await Component.InvokeAsync("BookList")
     </div>
 </body>
 </html>
