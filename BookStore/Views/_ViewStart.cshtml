@@ -1,17 +1,21 @@
 ﻿@{
     ViewData["Title"] = "_ViewStart";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 
 @{
     var routeUrl = ViewContext.RouteData.Values["Controller"].ToString();
     //you can put pages' name into pages
-    var pages = new List<string> { "Shop" };
+    var shop = new List<string> { "Shop" };
+    var withoutLayout = new List<string> { "Login" };
     //if routeUrl contains any of pages,the page will use _Layout as Layout page,the other pages will use _Layout1 ad Layout page
-    if (pages.Any(routeUrl.Contains))
+    if (shop.Any(routeUrl.Contains))
     {
         Layout = "_Layout";
+    }
+    else if (withoutLayout.Any(routeUrl.Contains))
+    {
+
     }
     else
     {

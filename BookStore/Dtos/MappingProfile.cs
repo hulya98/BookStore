@@ -19,6 +19,8 @@ namespace BookStore.Dtos
             CreateMap<WriterDto, Writer>();
             CreateMap<Carousel, CarouselDto>();
             CreateMap<CarouselDto, Carousel>();
+            CreateMap<User, SignInDto>().ReverseMap();
+            CreateMap<User, SignUpDto>().ReverseMap();
         }
     }
 }
